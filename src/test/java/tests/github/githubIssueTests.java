@@ -1,20 +1,20 @@
 package tests.github;
 
 import org.junit.jupiter.api.Test;
-import tests.pages.githubSteps;
+import pages.githubSteps;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-public class githubIssueTests {
+public class githubIssueTests extends BaseTest{
     private String repoUrl = "https://github.com/allure-framework/allure-java";
     private int issueId = 577;
 
     @Test
     void checkIssueWithNumberPresentSelenide(){
-        open(repoUrl);
+        open("https://github.com/allure-framework/allure-java");
         $(".js-repo-nav").$(byText("Issues")).click();
         $("#issue_" + issueId).shouldBe(visible);
     }

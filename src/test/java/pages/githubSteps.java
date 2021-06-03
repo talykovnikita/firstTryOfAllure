@@ -1,5 +1,6 @@
-package tests.pages;
+package pages;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -8,11 +9,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class githubSteps {
-    private static String mainUrl = "https://github.com";
 
     @Step("Open repository {repositoryName}")
     public static void openRepository(String repositoryName){
-        open(mainUrl + '/' + repositoryName);
+        open(Configuration.baseUrl + '/' + repositoryName);
     }
 
     @Step("Click on issues tab")
