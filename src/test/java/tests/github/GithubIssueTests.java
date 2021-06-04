@@ -1,29 +1,29 @@
 package tests.github;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
-import pages.githubSteps;
+import pages.GithubSteps;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-public class githubIssueTests extends BaseTest{
-    private String repoUrl = "https://github.com/allure-framework/allure-java";
-    private int issueId = 577;
-
+public class GithubIssueTests extends BaseTest{
     @Test
     void checkIssueWithNumberPresentSelenide(){
-        open("https://github.com/allure-framework/allure-java");
+        int issueId = 577;
+        open(Configuration.baseUrl + "/allure-framework/allure-java");
         $(".js-repo-nav").$(byText("Issues")).click();
         $("#issue_" + issueId).shouldBe(visible);
     }
 
     @Test
     void checkIssueWithNumberPresentLambda(){
+        int issueId = 576;
         step("Открыть репозиторий", (stepContext) -> {
-            stepContext.parameter("URL", repoUrl);
-            open(repoUrl);
+            stepContext.parameter("URL", Configuration.baseUrl + "/allure-framework/allure-java");
+            open(Configuration.baseUrl + "/allure-framework/allure-java");
         });
 
         step("Кликаем на вкладку Issues", () -> {
@@ -38,8 +38,9 @@ public class githubIssueTests extends BaseTest{
 
     @Test
     void checkIssueWithNumberPresentAnnotation(){
-        githubSteps.openRepository("allure-framework/allure-java");
-        githubSteps.clickOnIssueTab();
-        githubSteps.isIssueWithIdVisible(issueId);
+        int issueId = 576;
+        GithubSteps.openRepository("allure-framework/allure-java");
+        GithubSteps.clickOnIssueTab();
+        GithubSteps.isIssueWithIdVisible(issueId);
     }
 }

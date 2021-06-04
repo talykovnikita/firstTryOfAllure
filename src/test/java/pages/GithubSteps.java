@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class githubSteps {
+public class GithubSteps {
 
     @Step("Open repository {repositoryName}")
     public static void openRepository(String repositoryName){
